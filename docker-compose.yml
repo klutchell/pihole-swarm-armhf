@@ -1,28 +1,13 @@
 version: '3.2'
 services:
 
-    # https://github.com/portainer/portainer
-    # https://hub.docker.com/r/portainer/portainer/
-    portainer:
-        image: "portainer/portainer:linux-arm"
-        volumes:
-            - portainer_config_vol:/data
-            - /var/run/docker.sock:/var/run/docker.sock
-            - /etc/localtime:/etc/localtime:ro
-        ports:
-            - "9000:9000"
-        env_file:
-            - ./portainer.env
-        networks:
-            - overlay_net
-
     # https://github.com/diginc/docker-pi-hole
     # https://hub.docker.com/r/diginc/pi-hole/
     pihole:
         image: "diginc/pi-hole:arm"
         volumes:
-            - pihole_config_vol:/etc/pihole
-            - pihole_dnsmasq.d_vol:/etc/dnsmasq.d
+            - config_vol:/etc/pihole
+            - dnsmasq.d_vol:/etc/dnsmasq.d
             - /etc/localtime:/etc/localtime:ro
         ports:
             - "53:53/tcp"
@@ -36,9 +21,8 @@ services:
             test: curl --fail http://localhost:80/admin/ || exit 1
 
 volumes:
-    portainer_config_vol:
-    pihole_config_vol:
-    pihole_dnsmasq.d_vol:
+    config_vol:
+    dnsmasq.d_vol:
 
 networks:
     overlay_net:
