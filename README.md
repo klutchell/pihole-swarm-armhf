@@ -5,7 +5,13 @@ pihole service stack for docker swarm on raspberry pi
 ## Getting Started
 
 ```bash
+# clone
 git clone git@github.com:klutchell/pihole-swarm-armhf.git
+cd pihole-swarm-armhf
+
+# configure
+cp pihole.env.example pihole.env
+nano pihole.env
 ```
 
 ## Deployment
