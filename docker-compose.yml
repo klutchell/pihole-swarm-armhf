@@ -6,8 +6,8 @@ services:
     pihole:
         image: "diginc/pi-hole:arm"
         volumes:
-            - config_vol:/etc/pihole
-            - dnsmasq.d_vol:/etc/dnsmasq.d
+            - ./config:/etc/pihole
+            - ./dnsmasq.d:/etc/dnsmasq.d
             - /etc/localtime:/etc/localtime:ro
         ports:
             - "53:53/tcp"
@@ -20,9 +20,9 @@ services:
         healthcheck:
             test: curl --fail http://localhost:80/admin/ || exit 1
 
-volumes:
-    config_vol:
-    dnsmasq.d_vol:
+# volumes:
+#     config_vol:
+#     dnsmasq.d_vol:
 
 networks:
     overlay_net:

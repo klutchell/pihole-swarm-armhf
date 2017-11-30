@@ -14,6 +14,12 @@ git clone git@github.com:klutchell/pihole-swarm-armhf.git
 docker stack deploy --compose-file docker-compose.yml pihole 
 ```
 
+## Usage
+
+```bash
+bin/pihole --help
+```
+
 ## Author
 
 Kyle Harding <kylemharding@gmail.com>
